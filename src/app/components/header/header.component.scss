@@ -1,0 +1,30 @@
+@import "../../../colours";
+
+header {
+
+  border-bottom: 1px dotted $green;
+  margin-bottom: 20px;
+
+  h1 {
+    float: left;
+    padding: 10px 10px 10px 58px;
+    background: url('/assets/logo.png') no-repeat left;
+    line-height: 48px;
+    span {
+      color: $green;
+    }
+  }
+  form {
+    float: left;
+    padding: 20px 0 20px 0;
+
+    label {
+      color: $green;
+      margin-right: 5px;
+    }
+
+    input, .date-picker {
+      margin-right: 20px;     
+    }
+  }
+}

@@ -1,0 +1,12 @@
+<header class="clearfix">
+  <h1><span>Pitchfinder</span> | </h1>
+  <form>
+    <label for="pitch-id">Pitch ID:&nbsp;</label>
+    <input id="pitch-id" type="text" class="form-control" [ngbTypeahead] />
+    <label for="start-date">Start date:&nbsp;</label>
+    <app-date-picker class="date-picker"></app-date-picker>
+    <label for="end-date">End date:&nbsp;</label>
+    <app-date-picker class="date-picker"></app-date-picker>
+    <app-button (onclick)="search()">Search</app-button>
+  </form>
+</header>

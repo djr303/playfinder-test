@@ -1,0 +1,28 @@
+@import '../../../colours';
+
+.date-picker {
+  display: inline-block;
+
+  .input-group-append {
+    float: right;
+  }
+
+  button {
+    outline: none;
+  }
+
+  .calendar {
+    border: none;
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    margin-left: 10px;
+    background: url('/assets/calendar.png') no-repeat center center;
+    opacity: 0.5;
+  }
+}
+
+ngb-datepicker.dropdown-menu {
+  background-color: $lightGreen;
+  border: none;
+}
