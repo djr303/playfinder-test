@@ -1,0 +1,15 @@
+@import "../../../colours";
+
+:host ::ng-deep .results-page {
+  .pagination {
+    margin: 0 auto;
+    .page-item.active .page-link {
+      background-color: $green;
+      border-color: $green;
+      color: $offWhite;
+    }
+    .page-link {
+      color: $green;
+    }
+  }
+}

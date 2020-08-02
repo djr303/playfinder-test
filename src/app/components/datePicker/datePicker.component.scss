@@ -1,10 +1,10 @@
 @import '../../../colours';
 
 .date-picker {
-  display: inline-block;
 
   .input-group-append {
     float: right;
+    padding-top: 5px;
   }
 
   button {

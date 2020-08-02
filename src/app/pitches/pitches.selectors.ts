@@ -1,18 +1,29 @@
 import { createSelector } from '@ngrx/store';
-import AppState from './pitches.state'
+import AppState, { Pitches, Results } from './pitches.state'
 
-export const selectPitches = (state: AppState) => state.pitches;
-export const selectResults = (state: AppState) => state.results;
+export const selectPitches = (state: { root: AppState }) => state?.root?.pitches;
+export const selectResults = (state: { root: AppState }) => state?.root?.results;
+export const selectUrlHash = (state: { root: AppState }) => state?.root?.urlHash;
 
-// START HERE
-
-export const selectVisibleBooks = createSelector(
+export const selectSearchResults = createSelector(
   selectPitches,
   selectResults,
-  (selectedUser: User, allBooks: Book[]) => {
-    if (selectedUser && allBooks) {
-      return allBooks.filter((book: Book) => book.userId === selectedUser.id);
+  selectUrlHash,
+  (pitches: Pitches, results: Results, urlHash: string) => {
+
+    if (Object.keys(pitches).length > 0 && Object.keys(results).length > 0) {
+      return results[urlHash].pitches.map((id) => {
+        const { attributes: { starts, ends, price, availabilities }} = pitches[id]
+
+        return {
+          id,
+          starts,
+          ends,
+          price,
+          availabilities
+        }
+      })
     } else {
-      return allBooks;
+      return [];
     }
-  }
+  })

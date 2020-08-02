@@ -9,17 +9,18 @@ import { JSONResponse } from './pitches.state'
 
 @Injectable()
 export class PitchesEffects {
-  constructor(private pitchesHttpService: PitchesHttpService, private action$: Actions) {}
+  constructor(private pitchesHttpService: PitchesHttpService, private action$: Actions) { }
 
   GetPiteches$: Observable<Action> = createEffect(() =>
     this.action$.pipe(
       ofType(PitchesActions.GetPitchesAction),
-      mergeMap(action =>
-        this.pitchesHttpService.getPitches().pipe(
+      mergeMap(action => {
+          const { pitchId, starts, ends } = action.payload;
+          return this.pitchesHttpService.getPitches(pitchId, starts, ends).pipe(
           map((data: JSONResponse) => {
-            return PitchesActions.SuccessGetPitchesAction({ payload: data });
+            return PitchesActions.SuccessGetPitchesAction({ payload: { data, params: { pitchId, starts, ends }}});
           })
-        )
+        )} 
       )
     )
   );

@@ -1,0 +1,40 @@
+
+<div class="results-page clearfix">
+  <table *ngIf="pagedResults.length > 0" class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Slot Id #</th>
+        <th scope="col">Start Date</th>
+        <th scope="col">Duration</th>
+        <th scope="col">Price (GBP)</th>
+        <th scope="col">Price (EUR)</th>
+        <th scope="col">Availablities</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let result of pagedResults; index as i">
+        <td>
+          {{ result.id }}
+        </td>
+        <td>
+          {{ formatDate(result.starts) }}
+        </td>
+        <td>
+          {{ getDuration(result.starts, result.ends) }}
+        </td>
+        <td [innerHTML]="formatPriceGBP(result.price)">
+        </td>
+        <td [innerHtml]="formatPriceEUR(result.price)">
+        </td>
+        <td>
+          {{ result.availabilities }}
+        </td>
+      </tr>
+    </tbody>
+  </table> 
+
+  <div *ngIf="pagedResults.length > 0" class="d-flex justify-content-between p-2 pagination-container">
+    <ngb-pagination class="pagination" [collectionSize]="resultsSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="refreshResults()">
+    </ngb-pagination>
+  </div>
+</div>

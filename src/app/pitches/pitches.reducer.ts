@@ -4,14 +4,18 @@ import AppState, { initializeState } from './pitches.state';
 
 const initialState = initializeState();
 
-const reducer = createReducer(
+export const reducer = createReducer(
   initialState,
   on(PitchesActions.GetPitchesAction, state => state),
   on(PitchesActions.SuccessGetPitchesAction, (state: AppState, { payload }) => {
-    console.log('payload', payload);
     const { pitches, results } = state;
-    const { data, meta: { filter: { starts, ends, fromTime, toTime }}} = payload
-    const resultId = btoa(`${starts}${ends}${fromTime}${toTime}`)
+    const { data, meta: { filter: { starts, ends, fromTime, toTime }}} = payload.data;
+
+    const pitchIdParam = payload.params.pitchId;
+    const startsParam = payload.params.starts;
+    const endsParam = payload.params.ends;
+
+    const resultId = btoa(`${pitchIdParam}${startsParam}${endsParam}`)
     const returnedResults = {
       filter : {
         starts,
@@ -30,7 +34,7 @@ const reducer = createReducer(
     }, {})
 
     // get unqiues hash for pitch result
-    return { pitches: { ...pitches, ...returnedPitches }, results: { ...results, [resultId]: returnedResults }}
+    return { urlHash: resultId, pitches: { ...pitches, ...returnedPitches }, results: { ...results, [resultId]: returnedResults }}
   }),
 );
 

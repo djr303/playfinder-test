@@ -2,9 +2,9 @@ export type PitchAttributes = {
   starts: string,
   ends: string,
   price: string,
-  admin_free: string,
+  admin_fee: string,
   currency: string,
-  availablities: number
+  availabilities: number
 }
 
 export type Pitch = {
@@ -33,8 +33,9 @@ export type Results = {
   [key: string]: Result; 
 }
 
+
 export const initializeState = (): AppState => {
-  return { pitches: {}, results: {} };
+  return { pitches: {}, results: {}, urlHash: null };
 }
 
 export type JSONResponse = {
@@ -64,8 +65,8 @@ export type JSONResponse = {
 export default class AppState {
   pitches: Pitches
   results: Results
+  urlHash: string
 }
-
 
 
 

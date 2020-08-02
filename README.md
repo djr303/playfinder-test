@@ -1,4 +1,4 @@
-# Playerfinder Test
+# Playfinder Test
 
 Written by David Roberts
 
@@ -22,7 +22,9 @@ To test:
 
 * Routing via search params
 * Submit search via route params
-* Single item page via pitchId
 * Search results caching
 * Unit test all components and modules
-
+  * Strategy for unit testing components in isolation
+* Form validation
+* Single item page
+* E2E tests

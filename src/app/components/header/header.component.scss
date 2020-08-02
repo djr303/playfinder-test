@@ -10,17 +10,29 @@ header {
     padding: 10px 10px 10px 58px;
     background: url('/assets/logo.png') no-repeat left;
     line-height: 48px;
+
     span {
       color: $green;
     }
   }
   form {
     float: left;
-    padding: 20px 0 20px 0;
+    padding: 15px 0 0px 0;
+
+    input {
+      float: left;
+      width: 300px;
+    }
+
+    app-date-picker {
+      float: left
+    }
 
     label {
+      float: left;
       color: $green;
       margin-right: 5px;
+      padding-top: 9px;
     }
 
     input, .date-picker {
