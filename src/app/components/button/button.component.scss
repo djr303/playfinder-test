@@ -7,7 +7,9 @@ button {
   color: $offWhite;
   outline: none;
 
-  &:hover {
-    background-color: $lightGreen;
+  &:hover, &:active, &:visited {
+    background-color: $lightGreen !important;
+    color: $offWhite;
+    border: none;
   }
 }

@@ -6,7 +6,7 @@ describe('Reducer: Pitches', () => {
   it('should return state on GetPitchesAction', () => {
     const initialState = initializeState()
     const action = { type: 'GET_PITCHES '}
-    const expected = { pitches: {}, results: {} };
+    const expected = { urlHash: null, pitches: {}, results: {} };
     expect(reducer(initialState, action)).toEqual(expected);
   });
 
@@ -21,7 +21,7 @@ describe('Reducer: Pitches', () => {
           price: 'test-price-1',
           admin_fee: 'test-admin_fee-1',
           currency: 'test-currency-1',
-          availablities: 1
+          availabilities: 1
         }
       },
       '2': {
@@ -33,7 +33,7 @@ describe('Reducer: Pitches', () => {
           price: 'test-price-2',
           admin_fee: 'test-admin_fee-2',
           currency: 'test-currency-2',
-          availablities: 2
+          availabilities: 2
         }
       },
       '3': {
@@ -45,7 +45,7 @@ describe('Reducer: Pitches', () => {
           price: 'test-price-3',
           admin_fee: 'test-admin_fee-3',
           currency: 'test-currency-3',
-          availablities: 3
+          availabilities: 3
         }
       }
     }
@@ -70,7 +70,7 @@ describe('Reducer: Pitches', () => {
             price: 'test-price-1',
             admin_fee: 'test-admin_fee-1',
             currency: 'test-currency-1',
-            availablities: 1
+            availabilities: 1
           }
         },
         {
@@ -82,13 +82,13 @@ describe('Reducer: Pitches', () => {
             price: 'test-price-4',
             admin_fee: 'test-admin_fee-4',
             currency: 'test-currency-4',
-            availablities: 1
+            availabilities: 1
           }
         }
       ]
     } 
 
-    const action = { type: 'SUCCESS_GET_PITCHES', payload: jsonResponse }
+    const action = { type: 'SUCCESS_GET_PITCHES', payload: { data: jsonResponse, params: { pitchId: '1', starts: '2020-01-01', ends: '2020-01-02'} } }
 
     const expectedPitches = { ...initialPitches, 
       ['4']: {
@@ -100,13 +100,13 @@ describe('Reducer: Pitches', () => {
           price: 'test-price-4',
           admin_fee: 'test-admin_fee-4',
           currency: 'test-currency-4',
-          availablities: 1
+          availabilities: 1
         }
       }
     }
     
     const { meta: { filter: { starts, ends, fromTime, toTime }}} = jsonResponse
-    const resultId = btoa(`${starts}${ends}${fromTime}${toTime}`);
+    const resultId = btoa(`${'1'}${'2020-01-01'}${'2020-01-02'}`);
 
     const expectedResults = {
       [resultId]: {
@@ -120,10 +120,11 @@ describe('Reducer: Pitches', () => {
       }
     }
 
-    const expected = { pitches: expectedPitches, results: expectedResults }
+    const expected = { urlHash: resultId, pitches: expectedPitches, results: expectedResults }
 
     const result = reducer(
       { 
+        urlHash: null,
         pitches: initialPitches, 
         results: {}
       }, 

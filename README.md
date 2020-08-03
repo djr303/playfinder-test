@@ -18,13 +18,19 @@ To test:
 `$ npm test`
 
 
-# TODOs:
+# Notes on further work:
 
-* Routing via search params
-* Submit search via route params
-* Search results caching
-* Unit test all components and modules
-  * Strategy for unit testing components in isolation
-* Form validation
-* Single item page
-* E2E tests
+## Caching search results
+
+* This could be implemented through a `localStorage` solution with NGRX Effects
+
+## Testing
+
+* I have unit tested the most complex elements of the application
+* Components could be snapshot tested in isolation from the main application component tree
+* End to end test could be written to cover the user interactions with the application
+
+## Form validation
+
+* The search form at the top of the page could validate the input before submitting the search request
+

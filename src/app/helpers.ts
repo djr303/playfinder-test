@@ -19,7 +19,7 @@ export const getDuration = (starts: string, ends: string): string => {
    const minutes = Math.floor((duration / (1000 * 60)) % 60);
    const hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
 
-   return `${hours} hour ${minutes} minutes`;
+   return `${hours} hour(s) ${minutes} minutes`;
 }
 
 export const formatPriceGBP = (price: string): string => `&pound;${price}`;
